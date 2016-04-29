@@ -1,0 +1,136 @@
+#parse ( "header.html" )
+
+<body>
+
+            <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                           游戏管理 <a href="${home}gamelist">返回</a>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <form role="form" action="${home}gameupdate.do" method="post" onSubmit="return checkform()">
+                                    	<input type="hidden" name="id" value="$gameconfig.getId()">
+                                    	<div class="form-group">
+                                            <label>状态</label>
+                                           <input type="radio" name="open" id="open1" value="0" #if($gameconfig.isOpen()==false)checked #end> 关
+										   <input type="radio" name="open" id="open2" value="1" #if($gameconfig.isOpen())checked #end> 开
+                                        </div>
+                                        <div class="form-group">
+                                            <label>游戏名称</label>
+                                            <input class="form-control" placeholder="游戏名称" id="gamename" name="gamename" value="$gameconfig.getGamename()">
+                                            <span id="gamename_clew"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>游戏标识</label>
+                                            <input class="form-control" placeholder="游戏标识" id="gameflag" name="gameflag" value="$gameconfig.getGameflag()">
+                                            <span id="gameflag_clew"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>游戏密钥</label>
+                                            <input class="form-control" placeholder="游戏密钥" id="secretkey" name="secretkey" value="$gameconfig.getSecretkey()">
+                                            <span id="secretkey_clew"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>报警开关</label>
+                                           <input type="radio" name="alarm" id="alarm1" value="0" #if($gameconfig.isAlarm()==false)checked #end> 关
+										   <input type="radio" name="alarm" id="alarm2" value="1" #if($gameconfig.isAlarm())checked #end> 开
+                                        </div>
+                                        <div class="form-group">
+                                            <label>邮件地址</label>
+                                            <input class="form-control" placeholder="多个邮件用英文,号隔开" id="mails" name="mails" value="$gameconfig.getMails()">
+                                            <span id="mails_clew"></span>
+                                        </div>
+                                        <div class="form-group">
+                                        <button class="btn btn-success" id="pbtn" type="submit">提交</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                            </div>
+                            <!-- /.row (nested) -->
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+
+			<!-- Button trigger modal -->
+            <a data-target="#myModal" data-toggle="modal" id="popmodal"></a>
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                           <!-- <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>-->
+                            <h4 id="myModalLabel" class="modal-title">系统提示</h4>
+                        </div>
+                        <div class="modal-body">
+                           <p> 正在创建hbase 和hive映射表，创建完成自动跳转，请耐心等待执行完成！</p>
+                           <p> 创建过程中请勿关闭或者刷新页面，以免出现问题！</p>
+                        </div>
+                        <div class="modal-footer">
+                           <!-- <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>-->
+    
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+            <!-- /.modal -->
+
+    <!-- jQuery -->
+    <script src="assets/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="assets/bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="assets/dist/js/sb-admin-2.js"></script>
+    <script type="text/javascript">
+	$(function(){$("#pbtn").attr("disabled",false);});
+	function checkform(){
+		var gamename = $("#gamename").val();
+		var gameflag = $("#gameflag").val();
+		var secretkey = $("#secretkey").val();
+		
+		if(gamename == ""){
+			$("#gamename_clew").html("<font color=red>游戏名称不能为空</font>");
+			return false;
+		}else{
+			$("#gamename_clew").html("");
+		}
+		
+		if(gameflag == ""){
+			$("#gameflag_clew").html("<font color=red>游戏标识不能为空</font>");
+			return false;
+		}else{
+			$("#gameflag_clew").html("");
+		}
+		
+		if(secretkey == ""){
+			$("#secretkey_clew").html("<font color=red>游戏密钥不能为空</font>");
+			return false;
+		}else{
+			$("#secretkey_clew").html("");
+		}
+		
+		$("#pbtn").attr("disabled",true);
+		$("#popmodal").click();
+	
+	}
+	</script>
+
+</body>
+
+</html>
