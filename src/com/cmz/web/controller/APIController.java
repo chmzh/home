@@ -805,7 +805,7 @@ public class APIController implements IGameUpdate, ILogTypeUpdate {
 	
 	public void outPutJson(HttpServletResponse response, Gson gson, OutJson message) {
 		String result = gson.toJson(message);
-
+		response.setHeader("Content-type", "text/html;charset=UTF-8");
 		ServletOutputStream os;
 		try {
 			os = response.getOutputStream();
