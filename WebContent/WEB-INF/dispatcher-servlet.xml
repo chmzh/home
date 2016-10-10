@@ -62,6 +62,7 @@
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
 	    <property name="suffix" value=".html" />
 	    <property name="contentType" value="text/html;charset=UTF-8" />
+            <prop key="eventhandler.referenceinsertion.class">com.cndw.web.util.WebEscapeHtmlReference</prop>
 	</bean>
 
 	<!-- 数据源配置 -->
