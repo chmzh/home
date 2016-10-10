@@ -20,6 +20,6 @@ public class WebEscapeHtmlReference extends EscapeHtmlReference {
             return result;  
         } else {  
             return value.toString();  
-        }  
+        }   
     }  
 }  
