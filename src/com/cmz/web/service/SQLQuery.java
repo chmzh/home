@@ -22,9 +22,9 @@ public class SQLQuery extends JdbcDaoSupport{
 	}
 	
 	@Autowired
-	public SQLQuery(DataSource huotunserver) {
-		queryRunner = new QueryRunner(huotunserver);
-		super.setDataSource(huotunserver);
+	public SQLQuery(DataSource serverJdbc) {
+		queryRunner = new QueryRunner(serverJdbc);
+		super.setDataSource(serverJdbc);
 	}
 	
 	/**
