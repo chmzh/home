@@ -23,7 +23,7 @@ public interface UserDao {
 	@Select("SELECT "+fields+" FROM "+Table +" WHERE `uname` like '${uname}' LIMIT 1")
 	public User getUserByName(@Param("uname")String uname);
 	
-	@Select("SELECT "+fields+" FROM "+Table+" LIMIT #{from},#{num}")
+	//@Select("SELECT "+fields+" FROM "+Table+" LIMIT #{from},#{num}")
 	public List<User> getUsers(@Param("from")int from,@Param("num")int num);
 	
 	@Select("SELECT COUNT(*) FROM "+Table)
